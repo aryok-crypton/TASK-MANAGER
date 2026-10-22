@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Belajar SMA</title>
+    
+    <!-- PWA Manifest & Theme Color -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4f46e5">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/darkmode.css">
+</head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- CONTAINER UTAMA APLIKASI -->
+    <!-- ========================================== -->
+    <div class="app-container">
+
+        <!-- Sidebar / Navigasi Samping -->
+        <!-- class="sidebar": Kontainer navigasi utama untuk beralih antar halaman/menu -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>📚 Portal Belajar SMA</h2>
+                <span class="badge-role">Siswa SMA</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <!-- class="nav-item": Tombol navigasi interaktif untuk memindahkan view halaman -->
+                <button class="nav-item active" data-target="dashboard-view">
+                    <span class="icon">🏠</span> Dashboard
+                </button>
+                <button class="nav-item" data-target="subjects-view">
+                    <span class="icon">📖</span> 16 Mata Pelajaran
+                </button>
+                <button class="nav-item" data-target="quiz-view">
+                    <span class="icon">⚡</span> Smart Quiz & Flashcard
+                </button>
+                <button class="nav-item" data-target="planner-view">
+                    <span class="icon">📅</span> To-Do & Kalender
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <!-- class="theme-toggle-btn": Tombol pengubah mode gelap dan terang -->
+                <button id="themeToggleBtn" class="theme-toggle-btn">
+                    🌙 <span class="toggle-text">Dark Mode</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Area Konten Utama -->
+        <!-- class="main-content": Memuat seluruh tampilan halaman yang berubah dinamis -->
+        <main class="main-content">
+
+            <!-- Top Header Bar -->
+            <!-- class="top-header": Header atas berisi sapaan, streak tracker, dan status cepat -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button id="sidebarToggle" class="sidebar-toggle-btn">☰</button>
+                    <h1>Haii agit! 👋</h1>
+                </div>
+                <div class="header-right">
+                    <!-- class="streak-badge": Widget pelacak konsistensi hari belajar berturut-turut -->
+                    <div class="streak-badge" id="streakCounterWidget" title="Streak Belajar Beruntun">
+                        🔥 <span id="streakCount">0</span> Hari Streak
+                    </div>
+                </div>
+            </header>
+
+            <!-- ========================================== -->
+            <!-- VIEW 1: DASHBOARD UTAMA -->
+            <!-- ========================================== -->
+            <section id="dashboard-view" class="view-section active">
+                <div class="dashboard-grid">
+                    
+                    <!-- Kartu Informasi Cepat SNBT -->
+                    <!-- class="card-welcome": Kartu sambutan dan target belajar utama -->
+                    <div class="card card-welcome">
+                        <h3>Target SNBT & Universitas Impian 🎯</h3>
+                        <p>Tetap konsisten kerjakan target harian, evaluasi soal yang sering salah, dan jangan lupa bahagia!</p>
+                        <div class="quick-stats-row">
+                            <div class="stat-box">
+                                <span class="stat-num" id="dashTodoCount">0</span>
+                                <span class="stat-label">Tugas Hari Ini</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-num" id="dashBookmarkCount">0</span>
+                                <span class="stat-label">Materi Di-Bookmark</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Widget Kalender & Reminder Harian -->
+                    <!-- class="card-reminder": Menampilkan tugas hari ini & opsi tambah reminder H-1 -->
+                    <div class="card card-reminder">
+                        <div class="card-header-flex">
+                            <h3>📅 Kalender & Reminder Tugas</h3>
+                            <button class="btn-sm" id="openAddReminderModal">+ Tambah Reminder</button>
+                        </div>
+                        <div class="reminder-list-container" id="dashReminderList">
+                            <!-- Data tugas harian & sisa tenggat waktu akan dimuat secara dinamis via JS -->
+                            <p class="text-muted">Belum ada tugas atau reminder hari ini.</p>
+                        </div>
+                    </div>
+
+                    <!-- Pusat Akses Google Drive -->
+                    <!-- class="card-gdrive": Akses cepat tautan e-book & materi lengkap TKA/SNBT -->
+                    <div class="card card-gdrive">
+                        <h3>📁 Pusat Akses Google Drive</h3>
+                        <p>Navigasi instan ke folder materi lengkap 16 mata pelajaran & bank soal SNBT.</p>
+                        <a href="#" target="_blank" class="btn-primary-outline" id="globalDriveLink">Buka Folder Google Drive Utama ↗</a>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- VIEW 2: 16 MATA PELAJARAN -->
+            <!-- ========================================== -->
+            <section id="subjects-view" class="view-section">
+                <div class="section-header">
+                    <h2>Daftar 16 Mata Pelajaran SMA</h2>
+                    <p>Pilih mata pelajaran untuk melihat rangkuman, rumus krusial, dan tautan Google Drive spesifik.</p>
+                </div>
+                <!-- class="subjects-grid": Grid kontainer untuk 16 kartu mata pelajaran -->
+                <div class="subjects-grid" id="subjectsGridContainer">
+                    <!-- Kartu-kartu mapel akan di-generate otomatis oleh subjects.js -->
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- VIEW 3: SMART QUIZ & FLASHCARD -->
+            <!-- ========================================== -->
+            <section id="quiz-view" class="view-section">
+                <div class="section-header">
+                    <h2>⚡ Smart Quiz & Flashcard</h2>
+                    <p>Generator soal hitungan otomatis (Math.random) & evaluasi riwayat soal yang sering salah.</p>
+                </div>
+                <div class="quiz-container-box" id="quizContainerBox">
+                    <!-- Konten kuis, flashcard, dan review mistakes akan dirender di sini -->
+                    <p>Modul quiz generator sedang dimuat...</p>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- VIEW 4: TO-DO LIST & KALENDER -->
+            <!-- ========================================== -->
+            <section id="planner-view" class="view-section">
+                <div class="section-header">
+                    <h2>📅 To-Do List Tugas & Target SNBT</h2>
+                    <p>Kelola daftar tugas harian dan catat sisa tenggat waktu (deadline) dengan sistem LocalStorage.</p>
+                </div>
+                <div class="planner-wrapper">
+                    <!-- class="planner-form-card": Form input tugas dan reminder dengan target tenggat -->
+                    <div class="card planner-form-card">
+                        <h3>Tambah Tugas / Target Baru</h3>
+                        <form id="todoForm">
+                            <div class="form-group">
+                                <label>Judul Tugas / Bab SNBT</label>
+                                <input type="text" id="todoTitle" placeholder="Misal: Latihan Soal Penalaran Kuantitatif" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tenggat Waktu (Deadline)</label>
+                                <input type="date" id="todoDeadline" required>
+                            </div>
+                            <button type="submit" class="btn-primary">Simpan ke LocalStorage</button>
+                        </form>
+                    </div>
+                    <!-- class="planner-output-card": Daftar list tugas aktif -->
+                    <div class="card planner-output-card">
+                        <h3>Daftar Tugas & Status Sisa Waktu</h3>
+                        <div id="fullTodoListContainer">
+                            <!-- Daftar list tugas dirender disini -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Service Worker Registration Script -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('ServiceWorker registered!'))
+                    .catch(err => console.log('ServiceWorker error: ', err));
+            });
+        }
+    </script>
+
+    <!-- Main JavaScript Controller -->
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
