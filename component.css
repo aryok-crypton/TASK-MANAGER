@@ -259,3 +259,62 @@
     color: var(--text-muted);
     font-size: 0.85rem;
 }
+/* =====================================================================
+ * TAMBAHAN: SMART STUDY & TASK MANAGER BADGE & CARD STYLES
+ * ===================================================================== */
+
+.task-card {
+    background: var(--bg-card);
+    border-left: 5px solid var(--primary);
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border-color);
+}
+
+.task-info h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text-main);
+}
+
+.task-info p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+}
+
+/* Badge Label Prioritas Cerdas */
+.badge-priority {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 6px;
+    margin-top: 6px;
+}
+
+.badge-tinggi { background-color: #fee2e2; color: #ef4444; border: 1px solid #fecaca; } /* Merah - Mendesak */
+.badge-sedang { background-color: #fef3c7; color: #d97706; border: 1px solid #fde68a; } /* Oranye - Sedang */
+.badge-rendah { background-color: #ecfdf5; color: #10b981; border: 1px solid #a7f3d0; } /* Hijau - Santai */
+
+.btn-delete-task {
+    background-color: #fee2e2;
+    color: #ef4444;
+    border: 1px solid #fecaca;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.btn-delete-task:hover {
+    background-color: #fecaca;
+}
