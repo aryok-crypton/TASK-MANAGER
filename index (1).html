@@ -146,45 +146,50 @@
                     <p>Modul quiz generator sedang dimuat...</p>
                 </div>
             </section>
-
-            <!-- ========================================== -->
-            <!-- VIEW 4: TO-DO LIST & KALENDER -->
-            <!-- ========================================== -->
-            <section id="planner-view" class="view-section">
-                <div class="section-header">
-                    <h2>📅 To-Do List Tugas & Target SNBT</h2>
-                    <p>Kelola daftar tugas harian dan catat sisa tenggat waktu (deadline) dengan sistem LocalStorage.</p>
-                </div>
-                <div class="planner-wrapper">
-                    <!-- class="planner-form-card": Form input tugas dan reminder dengan target tenggat -->
-                    <div class="card planner-form-card">
-                        <h3>Tambah Tugas / Target Baru</h3>
-                        <form id="todoForm">
-                            <div class="form-group">
-                                <label>Judul Tugas / Bab SNBT</label>
-                                <input type="text" id="todoTitle" placeholder="Misal: Latihan Soal Penalaran Kuantitatif" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Tenggat Waktu (Deadline)</label>
-                                <input type="date" id="todoDeadline" required>
-                            </div>
-                            <button type="submit" class="btn-primary">Simpan ke LocalStorage</button>
-                        </form>
-                    </div>
-                    <!-- class="planner-output-card": Daftar list tugas aktif -->
-                    <div class="card planner-output-card">
-                        <h3>Daftar Tugas & Status Sisa Waktu</h3>
-                        <div id="fullTodoListContainer">
-                            <!-- Daftar list tugas dirender disini -->
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </main>
+<!-- ========================================== -->
+<!-- VIEW 4: TO-DO LIST & SMART TASK MANAGER (GABUNGAN) -->
+<!-- ========================================== -->
+<section id="planner-view" class="view-section">
+    <div class="section-header">
+        <h2>📅 Smart Task Manager & Prioritas Cerdas</h2>
+        <p>Kelola tugas sekolahmu dan biarkan sistem menghitung tingkat prioritasnya secara otomatis berdasarkan tingkat kesulitan & sisa tenggat waktu.</p>
     </div>
+    
+    <div class="planner-wrapper">
+        <!-- Form Input Tugas Gabungan -->
+        <div class="card planner-form-card">
+            <h3>Tambah Tugas Baru</h3>
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="mapel">Mata Pelajaran</label>
+                    <input type="text" id="mapel" placeholder="Contoh: Matematika / Penalaran Kuantitatif" required>
+                </div>
+                <div class="form-group">
+                    <label for="tugas">Deskripsi Tugas / Bab</label>
+                    <input type="text" id="tugas" placeholder="Contoh: PR Bab 3 / Latihan Soal SNBT" required>
+                </div>
+                <div class="form-group">
+                    <label for="tenggat">Tenggat Waktu (Deadline)</label>
+                    <input type="date" id="tenggat" required>
+                </div>
+                <div class="form-group">
+                    <label for="kesulitan">Tingkat Kesulitan (Skala 1 - 5)</label>
+                    <input type="number" id="kesulitan" min="1" max="5" value="3" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Simpan & Analisis Prioritas</button>
+            </form>
+        </div>
 
-    <!-- Service Worker Registration Script -->
+        <!-- Daftar Output Tugas Berdasarkan Prioritas Cerdas -->
+        <div class="card planner-output-card">
+            <h3>Daftar Tugas (Diurutkan Berdasarkan Prioritas)</h3>
+            <div id="taskList" class="task-container">
+                <!-- Daftar tugas akan dirender secara dinamis oleh JavaScript -->
+            </div>
+        </div>
+    </div>
+</section> 
+            <!-- Service Worker Registration Script -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
