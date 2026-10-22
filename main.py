@@ -1,6 +1,6 @@
 from datetime import datetime
 
-# Data awal untuk simulasi
+# Data awal untuk percobaan
 daftar_tugas = [
     
 ]
