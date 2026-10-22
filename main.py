@@ -38,7 +38,7 @@ def hitung_skor_prioritas(tenggat_str, kesulitan):
 def tampilkan_tugas_cerdas():
     """Menampilkan tugas yang diurutkan berdasarkan prioritas tertinggi"""
     print("\n==================================================")
-    print("      DAFTAR TUGAS (DIURUTKAN BERDASARKAN PRIORITAS) ")
+    print("  DAFTAR TUGAS (DIURUTKAN BERDASARKAN PRIORITAS) ")
     print("==================================================")
     
     if not daftar_tugas:
